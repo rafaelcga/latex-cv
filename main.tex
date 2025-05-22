@@ -2,7 +2,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[sfdefault]{FiraSans} % Font
 \usepackage[T1]{fontenc}
-\usepackage{ragged2e} % For justified text
 \usepackage{geometry}
 \geometry{left=1in,right=1in,top=1in,bottom=1in} % Adjust margins as needed
 \usepackage{enumitem} % For customizable lists
@@ -10,12 +9,31 @@
 \setlist[itemize]{label={}} % Empty label for bullet list
 \usepackage{fontawesome5} % For social media icons
 \usepackage{hyperref} % For clickable links
+\usepackage{array} % Required for newcolumntype
+\usepackage{tabularx} % Required for tabularx and X column type
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
 }
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{\dimexpr0.75\linewidth - 2\tabcolsep}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcommand{\dateitem}[2]{
+    \item
+    \noindent
+    \begin{tabularx}{\linewidth}{@{}LR@{}}
+        #1 & #2 \\
+    \end{tabularx}
+    \par
+}
+
+% MS Word style justified text
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
 
 % Define colors
 \usepackage{xcolor}
@@ -31,6 +49,13 @@
   {}% before code
   [\titlerule]% after code
 \titlespacing{\section}{0pt}{12pt}{6pt} % Adjust spacing as needed
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{headerblue}}% format
+  {}% label
+  {0pt}% separation
+  {}% before code
+  {}% no rule after for subsection
+\titlespacing{\subsection}{0pt}{6pt}{6pt}
 
 % --- BEGIN DOCUMENT ---
 \begin{document}
@@ -55,41 +80,67 @@
 \section*{Summary}
 \vspace{5pt}
 \color{textgray}
-
-A highly motivated and results-oriented [Your Profession] with [Number] years of experience in [Key Area 1] and [Key Area 2]. Proven ability to [Action Verb] to achieve [Result]. Seeking to leverage [Your Skills/Strengths] to contribute to a dynamic team at [Desired Company/Industry].
+Rafael C. Giménez is an AI and Biomedical Engineer with expertise in Medical Imaging and Computer Vision. He holds an MSc in AI and a BE in Biomedical Engineering. His research experience includes nanoparticle characterization and biomedical image analysis using AI at Universidad Politécnica de Madrid, Natural Language Processing at Hospital 12 de Octubre, and X-Ray Computed Tomography algorithms at Universidad Carlos III de Madrid. He also has experience as an Assistant Professor and has published in both high-impact Medical Imaging journals and Biomedical Engineering congresses.
 
 % --- EDUCATION ---
 \section*{Education}
 \vspace{5pt}
 \color{textgray}
 \begin{itemize}
-    \item \textbf{[Degree Name]}, [Major] \hfill [Month Year] -- [Month Year]
-          \newline [University Name], [City, State]
-          \newline \textit{Relevant Coursework: [Course 1], [Course 2]}
-          \newline \textit{GPA: [Your GPA]/[Max GPA] (if applicable)}
-    \item \textbf{[Another Degree/Certification]}, [Field] \hfill [Month Year] -- [Month Year]
-          \newline [Institution Name], [City, State]
+    \dateitem{\textbf{PhD in Software, Systems and Computation}}{Sep 2022 -- Present}
+        Universidad Politécnica de Madrid, Madrid, Spain
+    \dateitem{\textbf{MSc in Artificial Intelligence}}{Sep 2021 -- Jul 2022}
+        Universidad Politécnica de Madrid, Madrid, Spain
+    \dateitem{\textbf{BE in Biomedical Engineering}, Major in Medical Imaging}{Sep 2017 -- Jul 2021}
+        Universidad Carlos III de Madrid, Leganés, Spain
 \end{itemize}
 
 % --- EXPERIENCE ---
 \section*{Experience}
 \vspace{5pt}
 \color{textgray}
+\subsection*{\textbf{Universidad Politécnica de Madrid}}
 \begin{itemize}
-    \item \textbf{[Job Title]} at \textbf{[Company Name]} \hfill [Month Year] -- [Month Year]
-          \newline [City, State]
-          \begin{itemize}[label=$\bullet$]
-              \item Led [Project/Task] resulting in [Quantifiable Achievement].
-              \item Developed and implemented [System/Process] improving [Metric] by [Percentage].
-              \item Collaborated with [Team/Stakeholders] to [Action] and achieve [Result].
-              \item Responsible for [Key Responsibility 1] and [Key Responsibility 2].
-          \end{itemize}
-    \item \textbf{[Previous Job Title]} at \textbf{[Previous Company Name]} \hfill [Month Year] -- [Month Year]
-          \newline [City, State]
-          \begin{itemize}[label=$\bullet$]
-              \item Managed [Task/Project] and delivered [Result].
-              \item Contributed to [Team Goal] by [Action].
-          \end{itemize}
+    \dateitem{\textbf{Researcher} at the \textbf{Biomedical Informatics Group}}{Jul 2023 -- Present}
+        Research on nanoparticle characterization in Electron Microscopy images through Artificial Intelligence.
+    \dateitem{\textbf{Assistant Professor}}{Sep 2023 -- Jun 2024}
+        Teaching position in Programming I and Programming II within the Computer Science Bachelor's Degree.
+    \dateitem{\textbf{Research Collaborator} at the \textbf{Biomedical Informatics Group}}{Jan 2022 -- Jul 2023}
+        Research on Computer Vision algorithms applied to biomedical image characterization.
+\end{itemize}
+\subsection*{\textbf{Hospital 12 de Octubre}}
+\begin{itemize}
+    \dateitem{\textbf{Researcher}}{Dec 2022 -- Jul 2023}
+        Research on Natural Language Processing for phenotypic ontology translation and information extraction.
+\end{itemize}
+\subsection*{\textbf{Universidad Carlos III de Madrid}}
+\begin{itemize}
+    \dateitem{\textbf{Research Intern} at the \textbf{Biomedical Imaging and Instrumentation Group}}{Jul 2020 -- Jun 2021}
+        Development of advanced callibration and reconstruction algorithms for X-Ray Computed Tomography using Artificial Intelligence.
+\end{itemize}
+
+% --- PUBLICATIONS ---
+\section*{Publications}
+\vspace{5pt}
+\color{textgray}
+\begin{itemize}
+    \dateitem{\textbf{Multi-Class Dental CBCT Segmentation in Data-Constrained Scenarios Through Transformers}}{Mar 2025}
+        \textcolor{darkgray}{\textbf{Giménez-Aguilar, R. C.}}, Paraíso-Medina, S., García-Remesal, M., Pradíes- Ramiro, G. J., Bonfanti-Gris, M., \& Alonso-Calvo, R.
+        \\ \textit{International Journal of Interactive Multimedia and Artificial Intelligence}
+        \\ \href{https://dx.doi.org/10.9781/ijimai.2025.03.003}{10.9781/ijimai.2025.03.003}
+    \dateitem{\textbf{Deep Learning–Based Estimation of Radiographic Position to Automatically Set Up the X-Ray Prime Factors}}{Oct 2024}
+        Del Cerro, C. F., \textcolor{darkgray}{\textbf{Giménez, R. C.}}, García-Blas, J., Sosenko, K., Ortega, J. M., Desco, M., \& Abella, M.
+        \\ \textit{Journal of Imaging Informatics in Medicine}
+        \\ \href{https://doi.org/10.1007/s10278-024-01256-x}{10.1007/s10278-024-01256-x}
+    \dateitem{\textbf{Reconocimiento Automático de Posiciones Radiográficas en Radiología}}{Nov 2021}
+        \textcolor{darkgray}{\textbf{Giménez, R. C.}}, Del Cerro, C. F., Sosenko, K., Desco, M., García-Blas, J., \& Abella, M.
+        \\ \textit{CASEIB 2021: XXXIX Congreso Anual de La Sociedad Española de Ingeniería Biomédica}
+    \dateitem{\textbf{Estimación del desplazamiento horizontal del detector en un sistema de rayos X utilizando aprendizaje por transferencia.}}{Nov 2020}
+        Del Cerro, C. F., \textcolor{darkgray}{\textbf{Giménez, R. C.}}, Olmos, P. M., Piol, A., Desco, M., \& Abella, M.
+        \\ \textit{CASEIB 2020: XXXVIII Congreso Anual de La Sociedad Española de Ingeniería Biomédica}
+    \dateitem{\textbf{Corrección del Artefacto de Truncamiento en TAC mediante Aprendizaje profundo}}{Nov 2020}
+        Berdón, P. M., Del Cerro, C. F., \textcolor{darkgray}{\textbf{Giménez, R. C.}}, Desco, M., \& Abella, M.
+        \\ \textit{CASEIB 2020: XXXVIII Congreso Anual de La Sociedad Española de Ingeniería Biomédica}
 \end{itemize}
 
 % --- SKILLS ---
@@ -97,32 +148,18 @@ A highly motivated and results-oriented [Your Profession] with [Number] years of
 \vspace{5pt}
 \color{textgray}
 \begin{itemize}
-    \item \textbf{Programming Languages:} [Python], [Java], [C++], [JavaScript]
-    \item \textbf{Frameworks/Libraries:} [React], [Angular], [Django], [Spring Boot]
-    \item \textbf{Databases:} [SQL], [NoSQL], [PostgreSQL], [MongoDB]
-    \item \textbf{Tools/Technologies:} [Git], [Docker], [AWS], [Jira]
-    \item \textbf{Operating Systems:} [Linux], [Windows], [macOS]
-    \item \textbf{Soft Skills:} [Problem-solving], [Teamwork], [Communication], [Leadership]
+    \item \textbf{Programming Languages:} Python, MATLAB, Java (basic), Bash (basic)
+    \item \textbf{Tools/Technologies:} Git, Docker, Podman, Linux
 \end{itemize}
 
-% --- PROJECTS (Optional Section) ---
-\section*{Projects}
+% --- LANGUAGES ---
+\section*{Languages}
 \vspace{5pt}
 \color{textgray}
 \begin{itemize}
-    \item \textbf{[Project Name]} \hfill [Month Year] -- [Month Year]
-          \newline \href{[Link to Project (e.g., GitHub)]}{[Link Text]}
-          \begin{itemize}[label=$\bullet$]
-              \item Developed a [Description of Project] using [Technologies Used].
-              \item Implemented [Feature 1] which [Result/Benefit].
-              \item Solved [Problem] by [Approach].
-          \end{itemize}
-    \item \textbf{[Another Project Name]} \hfill [Month Year] -- [Month Year]
-          \newline \href{[Link to Project (e.g., GitHub)]}{[Link Text]}
-          \begin{itemize}[label=$\bullet$]
-              \item Created a [Description of Project].
-              \item Utilized [Technology 1] and [Technology 2].
-          \end{itemize}
+    \item \textbf{Spanish:} Native
+    \item \textbf{English:} Professional level
 \end{itemize}
+
 
 \end{document}
